@@ -137,3 +137,20 @@ U.GetGroupMembers = function()
   end
   return groupMembers
 end
+
+U.GetColoredNameFromFullName = function(fullName)
+  local _, myRealm = UnitFullName("player")
+  local name, realm = strsplit("-", fullName)
+  for unit in getGroupMembers(false, false) do
+    local isRealUnit = UnitName(unit) -- getGroupMembers function is fricked
+    if isRealUnit then
+      local unitName, unitRealm = UnitFullName(unit)
+      if unitName == name and unitRealm == realm or (not unitRealm and myRealm == realm) then
+        local _, class = UnitClass(unit)
+        local _, _, _, classHexString = GetClassColor(class)
+        local coloredName = "|c" .. classHexString .. name .. "|r"
+        return coloredName
+      end
+    end
+  end
+end

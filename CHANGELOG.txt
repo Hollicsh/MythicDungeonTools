@@ -1,3 +1,3 @@
-## 6.0.5 (2026-02-09)
+## 6.0.6 (2026-02-11)
 
-- Pre-patch warning dialog for legacy maps
+- Release version bump
